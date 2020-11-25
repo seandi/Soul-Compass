@@ -5,6 +5,7 @@
         android:id="@+id/navigation_quiz"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_quiz"
+        app:itemIconTint="@color/amber"
         />
 
     <item
