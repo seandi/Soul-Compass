@@ -7,7 +7,6 @@
     <item
         android:id="@+id/info"
         android:icon="@drawable/ic_home_black_24dp"
-        android:iconTint="@color/teal_light"
         app:showAsAction="always"
         android:title="Info" />
 
