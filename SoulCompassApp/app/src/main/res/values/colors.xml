@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="indigo">#3f51b5</color>
+    <color name="indigo_light">#aab6fe</color>
+    <color name="indigo_dark">#000070</color>
+
+    <color name="teal">#4db6ac</color>
+    <color name="teal_background_alt">#e5ffff</color>
+    <color name="teal_light">#b2dfdb</color>
+    <color name="teal_dark">#00867d</color>
+    <color name="teal_background">#f3ffff</color>
+
+    <color name="amber_Dark">#ffa000</color>
+    <color name="amber">#ffca28</color>
+    <color name="amber_light">#fff350</color>
+
+
+</resources>
