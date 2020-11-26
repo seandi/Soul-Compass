@@ -11,36 +11,11 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/quiz_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingStart="16dp"
-                android:text="Question 1"
-                android:textAlignment="textStart" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingStart="16dp"
-                android:text="Question 2"
-                android:textAlignment="textStart" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingStart="16dp"
-                android:text="..."
-                android:textAlignment="textStart" />
 
 
 
@@ -48,7 +23,6 @@
 
 
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

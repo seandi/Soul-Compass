@@ -25,6 +25,11 @@ import com.google.android.material.radiobutton.MaterialRadioButton;
 
 import net.kibotu.heartrateometer.HeartRateOmeter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class QuizFragment extends Fragment {
 
     private static final String[] CHOICE_LABELS = {
@@ -34,6 +39,14 @@ public class QuizFragment extends Fragment {
             "Strongly agree"
     };
 
+    private static final String[] QUESTIONS = {
+            "Sento di solito un senso di fatica e stanchezza",
+            "Se mi sveglio durante il sonno è difficile che mi riaddormenti",
+            "Sono in sovrappeso"
+    };
+
+    private Map<Integer, Integer> test_answers = new HashMap<>();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -41,9 +54,54 @@ public class QuizFragment extends Fragment {
 
 
         LinearLayout parent_layout = root.findViewById(R.id.quiz_layout);
+        generateTestSection(parent_layout, "Physical stress", QUESTIONS, 100);
+        
 
 
         return root;
+    }
+
+    private void generateTestSection(LinearLayout parent_layout, String section_title, String[] questions, int base_id){
+
+        TextView section_header = new TextView(getContext());
+        int height = (int) getResources().getDimension(R.dimen.question_text_height);
+        int padding = (int) getResources().getDimension(R.dimen.question_text_padding);
+
+        section_header.setText(section_title);
+
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                height);
+        param.setMargins(padding,padding,padding,0);
+        section_header.setLayoutParams(param);
+
+
+        section_header.setTextColor(Color.WHITE);
+        section_header.setTextSize(20);
+        section_header.setGravity(Gravity.CENTER);
+        section_header.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        section_header.setPadding(2*padding, 0, 0 ,0);
+        section_header.setTextAppearance(android.graphics.Typeface.BOLD);
+
+
+        GradientDrawable gradientDrawable=new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setCornerRadius(getResources().getDimension(R.dimen.header_corner_radius));
+        //gradientDrawable.setStroke(4,getResources().getColor(R.color.teal_dark));
+        gradientDrawable.setColor(getResources().getColorStateList(R.color.teal_dark));
+        section_header.setBackground(gradientDrawable);
+
+
+        parent_layout.addView(section_header);
+
+
+        int id = base_id;
+        for ( String question: questions) {
+            id++;
+            LinearLayout question_layout = createNewQuestion(parent_layout, 0);
+            createQuestionText(question_layout, question);
+            createMultipleChoiceButtons(question_layout, CHOICE_LABELS.length, id, CHOICE_LABELS);
+        }
     }
 
 
@@ -52,7 +110,7 @@ public class QuizFragment extends Fragment {
         question_layout.setOrientation(LinearLayout.VERTICAL);
 
         GradientDrawable gradientDrawable=new GradientDrawable();
-        gradientDrawable.setStroke(1,getResources().getColor(R.color.teal_dark));
+        gradientDrawable.setStroke(0,getResources().getColor(R.color.teal_dark));
         question_layout.setBackground(gradientDrawable);
 
         int height_question = (int) getResources().getDimension(R.dimen.question_text_height);
@@ -112,7 +170,7 @@ public class QuizFragment extends Fragment {
         for(int i=0; i<num_choices; i++){
             buttons[i]  = new MaterialRadioButton(getContext());
             buttons[i].setText(choice_labels[i]);
-            buttons[i].setId(i + id);
+            buttons[i].setId(id+i);
             buttons[i].setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             buttons[i].setLayoutParams(new RadioGroup.LayoutParams(240,
                     ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.18
@@ -123,15 +181,13 @@ public class QuizFragment extends Fragment {
 
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    for(int i=0; i<num_choices; i++){
-                        //buttons[i].setEnabled(false);
-                    }
-                    Log.d("TAG",String.valueOf(checkedId));
+                    Log.d("Stree Test",
+                            "Selected answer" + String.valueOf(checkedId - id) + "for  question num " + String.valueOf(id));
+                    test_answers.put(id, checkedId - id);
                 }
             });
             rg.addView(buttons[i]);
         }
-        layout.addView(rg);//you add the whole RadioGroup to the layout
-
+        layout.addView(rg);
     }
 }
