@@ -6,5 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".ui.quiz.QuizFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:text="Question 1"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:text="Question 2"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:text="..."
+                android:textAlignment="textStart" />
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
