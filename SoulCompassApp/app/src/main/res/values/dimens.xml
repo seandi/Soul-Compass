@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!-- Dimensions for the stress test elements  -->
+    <dimen name="question_text_height">48dp</dimen>
+    <dimen name="question_text_padding">12dp</dimen>
+
+    <dimen name="question_choices_height">48dp</dimen>
+    <dimen name="question_choices_padding">12dp</dimen>
 </resources>

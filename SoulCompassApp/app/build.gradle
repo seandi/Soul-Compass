@@ -20,7 +20,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
+
+
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+
+}
+
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -33,5 +48,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.github.kibotu:Heart-Rate-Ometer:-SNAPSHOT'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.5'
 
 }
