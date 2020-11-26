@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_quiz"
-        android:name="com.example.soulcompass.ui.quiz.QuizFragment"
+        android:name="com.example.soulcompass.ui.quiz.StartQuizFragment"
         android:label="@string/title_quiz"
-        tools:layout="@layout/fragment_relax" />
+        tools:layout="@layout/fragment_start_quiz" />
 
     <fragment
         android:id="@+id/navigation_relax"
         android:name="com.example.soulcompass.ui.relax.RelaxFragment"
         android:label="@string/title_relax"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_relax" />
 
     <fragment
         android:id="@+id/navigation_report"
