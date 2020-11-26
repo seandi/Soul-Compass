@@ -46,7 +46,7 @@
             android:layout_height="56dp"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:background="@color/indigo_dark"
+            android:background="@color/teal_dark"
 
             android:clickable="true"
             android:focusedByDefault="true"
