@@ -136,7 +136,6 @@ public class QuizFragment extends Fragment {
                 // 5. Add result to database
                 SoulCompassDatabase database = new SoulCompassDatabase(getContext());
                 database.insertTestResult(test_result, test_scale);
-                database.loadTestResults();
                 database.close();
             }
         });
