@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.soulcompass.R;
+import com.example.soulcompass.SoulCompassDatabase;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
@@ -76,7 +77,7 @@ public class QuizFragment extends Fragment {
 
         LinearLayout parent_layout = root.findViewById(R.id.quiz_questions_layout);
         generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
-        generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
+        //generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
 
 
 
@@ -103,19 +104,24 @@ public class QuizFragment extends Fragment {
                     return;
                 }
 
-                // Compute test result
+                // 2. Compute test result
                 computeTestResult();
 
-                // Crete result fragment and add result bundle
+                // 3. Crete result fragment and add result bundle
                 Fragment result_fragment = new QuizResultFragment();
                 test_result_bundle.putInt("RESULT", test_result);
                 test_result_bundle.putInt("SCALE", test_scale);
                 result_fragment.setArguments(test_result_bundle);
 
-                // Execute fragment transaction
+                // 4. Execute fragment transaction
                 FragmentTransaction ft = getFragmentManager().beginTransaction().setReorderingAllowed(true);
                 ft.replace(R.id.nav_host_fragment, result_fragment);
                 ft.commit();
+
+                // 5. Add result to database
+                SoulCompassDatabase database = new SoulCompassDatabase(getContext());
+                database.insertTestResult(test_result, test_scale);
+                database.close();
             }
         });
 
