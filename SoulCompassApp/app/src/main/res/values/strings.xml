@@ -3,4 +3,146 @@
     <string name="title_quiz">Quiz</string>
     <string name="title_relax">Relax</string>
     <string name="title_report">Report</string>
+
+    <string name="result_description_1">
+        Vita sana, scelte ponderate, pacatezza e
+lungimiranza. Soddisfazione nella sfera affettiva e professionale,
+vivace vita sociale. Il tuo motto è Mens Sana In Corppore Sano. Sul
+fatto che il tuo corpo si senta rispettato e in ottima forma non c\'è
+alcun dubbio. La mente, le emozioni e lo spirito collaborano in buona
+armonia. La vita sociale va a gonfie vele. Non si capisce il motivo per
+cui tu abbia fatto questo test. Rilassati.  Lo stress non
+sai neanche cosa sia!"
+    </string>
+
+    <string name="result_description_2">
+        Hai buone capacità di adattamento e in
+linea generale possiedi gli strumenti per fronteggiare situazioni di
+tensione. Nel complesso hai un grande rispetto del tuo corpo. Ti
+ricordi che è il tempio della tua anima e hai deciso che vale la pena
+averne cura. Di tanto in tanto fai dei piccoli strappi alle regole che
+ti sei dato. Si vive una volta sola, dopotutto. La tua attività
+intellettuale è ricca e vivace. Le tue emozioni e il tuo spirito
+collaborano con la tua testa. La tua vita sociale è estremamente
+gratificante. In linea generale non sei a rischio. Solo in alcuni
+frangenti puoi esserti trovato nella condizione di fronteggiare piccoli
+inconvenienti. Piccolissimi inconvenienti, quindi estremamente ridotti
+gli indici che possono far pensare alla presenza in te di stress in
+campo."
+    </string>
+
+    <string name="result_description_3">
+        Hai discrete capacità di adattamento
+alla vita quotidiana e in linea di massima riesci a fronteggiare
+situazioni impegnative mantenendo un tono fisico adeguato, con buona
+energia complessiva. Complessivamente il tuo corpo è in forma e fai in
+modo che rimanga tale, evitando di stressarlo troppo o di sottoporlo a
+richieste eccessive. Intellettualmente sei vivace. Emozioni,
+sentimenti, esigenze spirituali, cooperano in te in maniera
+soddisfacente. La tua vita sociale funziona. Alcuni piccoli indici,
+ancora sfumati, lasciano intuire che per quanto tu ti senta
+complessivamente in buona forma percepisci che non stai ancora facendo
+il massimo per prevenire ogni possibile stress."
+    </string>
+
+    <string name="result_description_4">
+        Non ci vuole molto. Alcune scelte di
+vita più sane, un po\' più di attenzione alle esigenze del tuo corpo, un
+maggior ottimismo e un piccolo spostamento di prospettiva nel guardare
+le cose. Tu lo sai che emozioni, sentimenti, attenzione alle richieste
+dello spirito, sono parte integrante del tuo benessere generale. Così
+come una soddisfacente vita sociale. Probabilmente è un piccolo
+problema temporaneo. Non ti sarà difficile trovare il modo di attenuare
+alcune piccole manifestazioni di stress."
+    </string>
+
+    <string name="result_description_5">
+        Probabilmente e\' una fase temporanea.
+Sembra che nell\'ultimo periodo ti sia meno facile del solito
+conotrollare alcuni stati di tensione. Il corpo vuole un po\' più di
+rispetto da parte tua. Desidera solo cooperare con te ma tu devi
+metterlo nella condizione di contribuire al tuo benessere generale
+senza sottoporlo a tensioni eccessive. Da un punto di vista
+intellettuale sei una persona curiosa. Nella sfera emotiva sai
+cavartela piuttosto bene e le tue relazioni sociali procedono.
+Dialogare con il proprio spirito è utile, ricordalo. Al momento sembra
+che i rischi di stress siano in aumento, ma che per tua
+fortuna siano ancora controllabili."
+    </string>
+
+    <string name="result_description_6">
+        Sei una persona sensibile e per quanto
+in linea generale tu sappia cavartela, ci sono aspetti della vita
+quotidiana che possono aprire piccole crisi. Il primo a pagare un
+prezzo potrebbe essere proprio il tuo corpo. Non lo tratti tanto male,
+ma puoi trattarlo meglio. Tornate ad essere amici, tu e lui. Fai alcune
+scelte di vita più sane, fai attenzione al ritmo sognno-veglia, cura
+l\'alimentazione. Un po\' di esercizio fisico non ti farebbe male. Il
+corpo va protetto e rafforzato. La tua vita emotiva, intellettuale,
+relazionale, le tue esigenze spirituali procedono parallelamente al tuo
+stato fisico. Prenditi cura di tutti questi aspetti perchè sembra che
+in alcuni momenti tu possa diventare particolarmente sensibile agli
+stimoli stressanti in campo."
+    </string>
+
+    <string name="result_description_7">
+        Sono ancora lievi ma sarebbe meglio non
+ignorarli. In linea generale te la cavi ancora dignitosamente ma alcuni
+indici segnalano qualche piccola difficoltà. Di fronte a stati di
+tensione il corpo, soprattutto se non protetto e accudito, può reagire
+manifestando disagio e insofferenza. E\' necessario essere onesti: non
+stai facendo il massimo per prenderti cura del tuo corpo, e il tuo
+corpo lo sa. La tua vita emotiva, intellettuale, relazionale, le tue
+esigenze spirituali procedono parallelamente al tuo stato fisico. Sono
+presenti alcuni sintomi, ancora molto controllabili, che possono far
+pensare ad un recente incremento dello stress in campo."
+    </string>
+
+    <string name="result_description_8">
+        Sono ancora moderati ma sarebbe meglio
+non ignorarli.Qualcosa non sta girando nel modo migliore e non sempre
+riesci a trovare la soluzione più adatta per fronteggiare i piccoli
+eventi logoranti della vita quotidiana. Il tuo corpo partecipa alle tue
+vicende. E lo fa meglio se si sente amato e rispettato. Lo sai che non
+lo stai facendo nel migliore dei modi. Nel campo intellettuale possono
+sorgere alcune difficoltà. La vita emotiva e affettiva può risentire di
+questa condizione generale. Dialogare con lo spirito può non essere
+facile. Le relazioni sociali possono divenire meno gratificanti. Sì,
+sono presenti sintomi moderati di stress."
+    </string>
+
+    <string name="result_description_9">
+        Qualcosa non sta funzionando nel modo
+migliore. Probabilmente per te questo è un periodo piuttosto
+impegnativo e davvero hai la sensazione di non riuscire a venirne a
+capo. Ricorda che a volte e\' sufficiente un lieve aggiustamento dello
+stile di vita, un piccolo cambiamento di prospettiva per alleggerire lo
+stato di malessere. Puoi iniziare prendendoti maggior cura del tuo
+corpo, cercando di sostenerlo e di aiutarlo, con uno stile di vita più
+sano. Il tuo corpo desidera aiutari a vivere meglio, ma tu devi aiutare
+il tuo corpo. Ricorda che corpo, mente, spirito dialogano continuamente
+tra di loro. Se le cose non funzionano in uno di questi campi, tutti
+gli altri ne risentiranno. Le relazioni possono diventare meno
+appaganti e gratificanti, la vita sociale meno soddisfacente. Il
+benessere generale compromesso. Gli indici del test segnalano la
+presenza di sintomi piuttosto severi di stress in campo."
+    </string>
+
+    <string name="result_description_10">
+        Che cosa sta succedendo? Sembra che in
+questo momento le cose proprio non stiano girando nel verso giusto. Ti
+senti piuttosto inerme di fronte a tutto ciò che altera il tuo stato di
+quiete e genera tensione. Non e\' davvero il momento per sentirsi
+sconfitti dalle circostanze, e per lasciarsi invadere dagli stimoli che
+molto facilmente provocano in te ansia e stress. Il tuo corpo avrebbe
+bisogno di uno stile di vita piu\' sano. Avrebbe bisogno di sentirsi
+amato, accudito, rispettato. Non lo stai facendo abbastanza. Hai la
+sensazione di non avere sufficienti energie per farlo. Le emozioni non
+ti ubbidiscono, l\'attivitò intellettuale ne risente, il dialogo con il
+tuo essere profondo viene sospeso, la tua vita sociale diventa poco
+gratificante, e talvolta perfino frustrante. Il tuo benessere generale
+risulta compromesso. Questo e\' esattamente il momento giusto per reagire
+e per affrontare con spirito diverso tutto ciò che attualmente ti mette
+a dura prova, in particolare nel campo nel campo."
+    </string>
 </resources>

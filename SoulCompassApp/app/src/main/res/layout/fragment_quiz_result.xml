@@ -13,11 +13,32 @@
         android:gravity="center"
         android:text="Test result"
         android:textColor="#000000"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintVertical_bias="0.15"
         tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/result_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="24dp"
+        android:text="Vita sana, scelte ponderate, pacatezza e
+lungimiranza. Soddisfazione nella sfera affettiva e professionale,
+vivace vita sociale. Il tuo motto è Mens Sana In Corppore Sano. Sul
+fatto che il tuo corpo si senta rispettato e in ottima forma non c'è
+alcun dubbio. La mente, le emozioni e lo spirito collaborano in buona
+armonia. La vita sociale va a gonfie vele. Non si capisce il motivo per
+cui tu abbia fatto questo test. Rilassati.  Lo stress non
+    sai neanche cosa sia!"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@id/test_result" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
