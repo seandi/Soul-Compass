@@ -18,8 +18,10 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.soulcompass.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
 
@@ -56,18 +58,28 @@ public class QuizFragment extends Fragment {
     };
 
     private Map<Integer, Integer> test_answers = new HashMap<>();
+    private MaterialButton finishButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_quiz, container, false);
+        finishButton = root.findViewById(R.id.finish_button);
 
-
-        LinearLayout parent_layout = root.findViewById(R.id.quiz_layout);
+        LinearLayout parent_layout = root.findViewById(R.id.quiz_questions_layout);
         generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
-        generateTestSection(parent_layout, "Mental stress", QUESTIONS_PHYSICAL_STRESS, 200);
+        generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
 
 
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment result_fragment = new QuizResultFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction().setReorderingAllowed(true);
+                ft.replace(R.id.nav_host_fragment, result_fragment);
+                ft.commit();
+            }
+        });
 
         return root;
     }
