@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import androidx.core.util.Pair;
@@ -111,5 +112,14 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         database.close();
 
         return test_results;
+    }
+
+    /**
+     * Utility function to delete all records in the test table
+     */
+    public void deleteRecords(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TEST_TABLE_NAME, null, null);
+        database.close();
     }
 }
