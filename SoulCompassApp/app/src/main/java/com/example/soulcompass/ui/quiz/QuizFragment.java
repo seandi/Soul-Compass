@@ -57,9 +57,13 @@ public class QuizFragment extends Fragment {
             "I do not have nay hobby"
     };
 
+    private static final int QUESTION_MAX_VALUE = 3;
+
     private Map<Integer, Integer> test_answers = new HashMap<>();
     private MaterialButton finishButton;
     private Bundle test_result_bundle = new Bundle();
+    private int test_result = 0;
+    private int test_scale = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,13 +75,22 @@ public class QuizFragment extends Fragment {
         generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
         generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
 
-        test_result_bundle.putDouble("Result", 0.25);
+
 
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Compute test result
+                computeTestResult();
+
+                // Crete result fragment and add result bundle
                 Fragment result_fragment = new QuizResultFragment();
+                double test_result_normalized = ((double) test_result) / ((double) test_scale);
+                test_result_bundle.putDouble("Result", test_result_normalized);
                 result_fragment.setArguments(test_result_bundle);
+
+                // Execute fragment transaction
                 FragmentTransaction ft = getFragmentManager().beginTransaction().setReorderingAllowed(true);
                 ft.replace(R.id.nav_host_fragment, result_fragment);
                 ft.commit();
@@ -87,8 +100,13 @@ public class QuizFragment extends Fragment {
         return root;
     }
 
+    private void computeTestResult(){
+        this.test_result = test_answers.values().stream().reduce(0, Integer::sum);
+    }
+
     private void generateTestSection(LinearLayout parent_layout, String section_title, String[] questions, int base_id){
 
+        // 1. Generate section header
         TextView section_header = new TextView(getContext());
         int height = (int) getResources().getDimension(R.dimen.question_text_height);
         int padding = (int) getResources().getDimension(R.dimen.question_text_padding);
@@ -120,7 +138,7 @@ public class QuizFragment extends Fragment {
 
         parent_layout.addView(section_header);
 
-
+        // 2. Generate Questions
         int id = base_id;
         for ( String question: questions) {
             id++;
@@ -128,6 +146,9 @@ public class QuizFragment extends Fragment {
             createQuestionText(question_layout, question);
             createMultipleChoiceButtons(question_layout, CHOICE_LABELS.length, id, CHOICE_LABELS);
         }
+
+        // 3. Update test scale
+        this.test_scale += questions.length * QUESTION_MAX_VALUE;
     }
 
 
@@ -208,7 +229,7 @@ public class QuizFragment extends Fragment {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     Log.d("Stree Test",
-                            "Selected answer" + String.valueOf(checkedId - id) + "for  question num " + String.valueOf(id));
+                            "Selected answer " + String.valueOf(checkedId - id) + " for question num " + String.valueOf(id));
                     test_answers.put(id, checkedId - id);
                 }
             });
