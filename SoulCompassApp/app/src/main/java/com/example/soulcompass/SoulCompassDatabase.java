@@ -2,12 +2,18 @@ package com.example.soulcompass;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.SystemClock;
 import android.util.Log;
 
+
+import androidx.core.util.Pair;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -59,5 +65,51 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         Log.d("DATABASE", "Insert in TEST_TABLE row: " + String.valueOf(row));
         database.close();
 
+    }
+
+
+    /**
+     * Return a list of (date,result) pairs for each test in the database in the given scale
+     * @param scale
+     */
+    public List<Pair<String, Integer>> loadTestResults(Integer scale){
+
+        // 1. Init
+        List<Pair<String, Integer>> test_results = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        // 2. Query the database
+        String[] query_columns = {KEY_RESULT, KEY_DAY, KEY_SCALE};
+        String where_clause = KEY_SCALE+"=?";
+        String[] where_args = new String[] {String.valueOf(scale)};
+        Cursor cursor = database.query(
+                TEST_TABLE_NAME,
+                query_columns,
+                where_clause,
+                where_args,
+                null,
+                null,
+                null);
+
+        // 3. Iterate over the query results
+        cursor.moveToFirst();
+        Log.d("", String.valueOf(cursor));
+        for (int index=0; index < cursor.getCount(); index++){
+            Integer result = cursor.getInt(cursor.getColumnIndex(KEY_RESULT));
+            String day = cursor.getString(cursor.getColumnIndex(KEY_DAY));
+            String scale_str = cursor.getString(cursor.getColumnIndex(KEY_SCALE));
+            Log.d("", result + " " + day + " " + scale_str);
+
+            Pair<String, Integer> test = new Pair<>(day, result);
+            test_results.add(test);
+
+            cursor.moveToNext();
+        }
+
+        // 4. Close database helper and return loaded results
+        cursor.close();
+        database.close();
+
+        return test_results;
     }
 }
