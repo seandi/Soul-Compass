@@ -14,7 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
+import java.util.TreeMap;
 
 public class SoulCompassDatabase extends SQLiteOpenHelper {
 
@@ -149,5 +151,36 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         database.close();
         database_helper.close();
 
+    }
+
+    public static Map<String, Integer> loadUnlocksByDay(Context context){
+        // 1. Define the map to store the date and number of unlocks
+        Map<String, Integer>  map = new TreeMap<>();
+
+        // 2. Get the readable database
+        SoulCompassDatabase database_helper = new SoulCompassDatabase(context);
+        SQLiteDatabase database = database_helper.getReadableDatabase();
+
+        // 3. Define the query to get the data
+        Cursor cursor = database.rawQuery("SELECT " + UNLOCK_KEY_DATE + ", COUNT(*)  FROM " + UNLOCK_TABLE_NAME  +
+                " GROUP BY " + UNLOCK_KEY_DATE + " ORDER BY " + UNLOCK_KEY_DATE + " ASC ", new String [] {});
+
+        // 4. Iterate over returned elements on the cursor
+        cursor.moveToFirst();
+        for (int index=0; index < cursor.getCount(); index++){
+            String tmpKey = cursor.getString(0);
+            Integer tmpValue = Integer.parseInt(cursor.getString(1));
+
+            // Put the data from the database into the map
+            map.put(tmpKey, tmpValue);
+            cursor.moveToNext();
+        }
+
+        // 5. Close the cursor and database
+        cursor.close();
+        database.close();
+
+        // 6. Return the map with hours and number of steps
+        return map;
     }
 }
