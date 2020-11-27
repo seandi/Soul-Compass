@@ -39,10 +39,20 @@ public class QuizFragment extends Fragment {
             "Strongly agree"
     };
 
-    private static final String[] QUESTIONS = {
-            "Sento di solito un senso di fatica e stanchezza",
-            "Se mi sveglio durante il sonno è difficile che mi riaddormenti",
-            "Sono in sovrappeso"
+    private static final String[] QUESTIONS_PHYSICAL_STRESS = {
+            "I often feel tired",
+            "I often wake up during the night",
+            "If i wake up during the night, i struggle to sleep again",
+            "I exercise less then twice a week",
+            "Others think that i have too much worries"
+    };
+
+    private static final String[] QUESTIONS_MENTAL_STRESS = {
+            "I rarely introduce a novel activity in my job",
+            "I rarely read a book",
+            "I do not know any mentally relaxing activity",
+            "I rarely read anything besides newspapers",
+            "I do not have nay hobby"
     };
 
     private Map<Integer, Integer> test_answers = new HashMap<>();
@@ -54,8 +64,9 @@ public class QuizFragment extends Fragment {
 
 
         LinearLayout parent_layout = root.findViewById(R.id.quiz_layout);
-        generateTestSection(parent_layout, "Physical stress", QUESTIONS, 100);
-        
+        generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
+        generateTestSection(parent_layout, "Mental stress", QUESTIONS_PHYSICAL_STRESS, 200);
+
 
 
         return root;
@@ -98,7 +109,7 @@ public class QuizFragment extends Fragment {
         int id = base_id;
         for ( String question: questions) {
             id++;
-            LinearLayout question_layout = createNewQuestion(parent_layout, 0);
+            LinearLayout question_layout = createNewQuestion(parent_layout, 5);
             createQuestionText(question_layout, question);
             createMultipleChoiceButtons(question_layout, CHOICE_LABELS.length, id, CHOICE_LABELS);
         }
