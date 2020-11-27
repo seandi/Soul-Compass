@@ -59,6 +59,15 @@ public class QuizFragment extends Fragment {
             "I do not have nay hobby"
     };
 
+    private static final String[][] SECTIONS = {
+            QUESTIONS_PHYSICAL_STRESS
+    };
+
+    private static final String[] SECTIONS_NAME ={
+            "Physical stress",
+            "Mental stress"
+    };
+
     private static final int QUESTION_MAX_VALUE = 3;
 
     private Map<Integer, Integer> test_answers = new HashMap<>();
@@ -66,7 +75,7 @@ public class QuizFragment extends Fragment {
     private MaterialButton finishButton;
     private Bundle test_result_bundle = new Bundle();
     private int test_result = 0;
-    private int test_scale = 0;
+    private int test_scale = getCurrentScale();
     private int num_questions = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -76,8 +85,14 @@ public class QuizFragment extends Fragment {
         finishButton = root.findViewById(R.id.finish_button);
 
         LinearLayout parent_layout = root.findViewById(R.id.quiz_questions_layout);
-        generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
-        //generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
+        for (int section=0; section < SECTIONS.length; section++ ){
+            generateTestSection(parent_layout,
+                    SECTIONS_NAME[section],
+                    SECTIONS[section],
+                    100*section);
+        }
+
+
 
 
 
@@ -121,6 +136,7 @@ public class QuizFragment extends Fragment {
                 // 5. Add result to database
                 SoulCompassDatabase database = new SoulCompassDatabase(getContext());
                 database.insertTestResult(test_result, test_scale);
+                database.loadTestResults();
                 database.close();
             }
         });
@@ -176,8 +192,7 @@ public class QuizFragment extends Fragment {
             this.questions_answered.put(id, false);
         }
 
-        // 3. Update test scale and number of questions
-        this.test_scale += questions.length * QUESTION_MAX_VALUE;
+        // 3. Update number of questions
         this.num_questions += questions.length;
     }
 
@@ -272,5 +287,13 @@ public class QuizFragment extends Fragment {
             rg.addView(buttons[i]);
         }
         layout.addView(rg);
+    }
+
+    private static Integer getCurrentScale(){
+        Integer result_scale = 0;
+        for (String[] section_questions: SECTIONS) {
+            result_scale += QuizFragment.QUESTION_MAX_VALUE*section_questions.length;
+        }
+        return result_scale;
     }
 }
