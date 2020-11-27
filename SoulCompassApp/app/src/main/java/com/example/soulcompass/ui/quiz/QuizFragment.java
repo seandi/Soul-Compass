@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -64,6 +65,7 @@ public class QuizFragment extends Fragment {
     private Bundle test_result_bundle = new Bundle();
     private int test_result = 0;
     private int test_scale = 0;
+    private int num_questions = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -80,6 +82,12 @@ public class QuizFragment extends Fragment {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // 1. Check if all questions have been answered
+                if (test_answers.size() != num_questions){
+                    Toast.makeText(getContext(), "Some answers are missing!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // Compute test result
                 computeTestResult();
@@ -147,8 +155,9 @@ public class QuizFragment extends Fragment {
             createMultipleChoiceButtons(question_layout, CHOICE_LABELS.length, id, CHOICE_LABELS);
         }
 
-        // 3. Update test scale
+        // 3. Update test scale and number of questions
         this.test_scale += questions.length * QUESTION_MAX_VALUE;
+        this.num_questions += questions.length;
     }
 
 
