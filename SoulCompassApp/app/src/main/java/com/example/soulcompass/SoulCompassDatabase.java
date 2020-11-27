@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
 
 import androidx.core.util.Pair;
@@ -24,15 +22,15 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SoulCompass";
 
     public static final String TEST_TABLE_NAME = "stress_test_results";
-    public static final String KEY_ID = "id";
-    public static final String KEY_RESULT = "result";
-    public static final String KEY_DAY = "day";
-    public static final String KEY_SCALE = "scale";
+    public static final String TEST_KEY_ID = "id";
+    public static final String TEST_KEY_RESULT = "result";
+    public static final String TEST_KEY_DAY = "day";
+    public static final String TEST_KEY_SCALE = "scale";
 
 
     public static final String CREATE_TEST_TABLE_SQL = "CREATE TABLE " + TEST_TABLE_NAME + " (" +
-            KEY_ID + " INTEGER PRIMARY KEY, " + KEY_RESULT + " INTEGER, " +  KEY_DAY + " TEXT, " +
-            KEY_SCALE + " INTEGER);";
+            TEST_KEY_ID + " INTEGER PRIMARY KEY, " + TEST_KEY_RESULT + " INTEGER, " + TEST_KEY_DAY + " TEXT, " +
+            TEST_KEY_SCALE + " INTEGER);";
 
 
     private SimpleDateFormat dateFormat;
@@ -48,6 +46,7 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         db.execSQL(CREATE_TEST_TABLE_SQL);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         ;
@@ -57,10 +56,10 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues row = new ContentValues();
-        row.put(KEY_RESULT, result);
+        row.put(TEST_KEY_RESULT, result);
         String date = dateFormat.format(System.currentTimeMillis());
-        row.put(KEY_DAY, date);
-        row.put(KEY_SCALE, scale);
+        row.put(TEST_KEY_DAY, date);
+        row.put(TEST_KEY_SCALE, scale);
 
         database.insert(TEST_TABLE_NAME, null, row);
         Log.d("DATABASE", "Insert in TEST_TABLE row: " + String.valueOf(row));
@@ -80,8 +79,8 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
 
         // 2. Query the database
-        String[] query_columns = {KEY_RESULT, KEY_DAY, KEY_SCALE};
-        String where_clause = KEY_SCALE+"=?";
+        String[] query_columns = {TEST_KEY_RESULT, TEST_KEY_DAY, TEST_KEY_SCALE};
+        String where_clause = TEST_KEY_SCALE+"=?";
         String[] where_args = new String[] {String.valueOf(scale)};
         Cursor cursor = database.query(
                 TEST_TABLE_NAME,
@@ -96,9 +95,9 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         Log.d("", String.valueOf(cursor));
         for (int index=0; index < cursor.getCount(); index++){
-            Integer result = cursor.getInt(cursor.getColumnIndex(KEY_RESULT));
-            String day = cursor.getString(cursor.getColumnIndex(KEY_DAY));
-            String scale_str = cursor.getString(cursor.getColumnIndex(KEY_SCALE));
+            Integer result = cursor.getInt(cursor.getColumnIndex(TEST_KEY_RESULT));
+            String day = cursor.getString(cursor.getColumnIndex(TEST_KEY_DAY));
+            String scale_str = cursor.getString(cursor.getColumnIndex(TEST_KEY_SCALE));
             Log.d("", result + " " + day + " " + scale_str);
 
             Pair<String, Integer> test = new Pair<>(day, result);
