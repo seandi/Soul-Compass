@@ -108,8 +108,8 @@ public class QuizFragment extends Fragment {
 
                 // Crete result fragment and add result bundle
                 Fragment result_fragment = new QuizResultFragment();
-                double test_result_normalized = ((double) test_result) / ((double) test_scale);
-                test_result_bundle.putDouble("Result", test_result_normalized);
+                test_result_bundle.putInt("RESULT", test_result);
+                test_result_bundle.putInt("SCALE", test_scale);
                 result_fragment.setArguments(test_result_bundle);
 
                 // Execute fragment transaction

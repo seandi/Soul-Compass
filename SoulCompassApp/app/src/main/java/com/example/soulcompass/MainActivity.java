@@ -1,12 +1,14 @@
 package com.example.soulcompass;
 
-import android.app.FragmentTransaction;
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.SurfaceView;
+
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,6 +16,7 @@ import com.example.soulcompass.ui.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
@@ -21,6 +24,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import net.kibotu.heartrateometer.HeartRateOmeter;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
+
     }
 
     @Override
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Drawable drawable = menu.findItem(R.id.info).getIcon();
 
         drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(this,R.color.teal));
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this,R.color.white));
         menu.findItem(R.id.info).setIcon(drawable);
 
         return true;
