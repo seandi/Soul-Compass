@@ -59,6 +59,7 @@ public class QuizFragment extends Fragment {
 
     private Map<Integer, Integer> test_answers = new HashMap<>();
     private MaterialButton finishButton;
+    private Bundle test_result_bundle = new Bundle();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,11 +71,13 @@ public class QuizFragment extends Fragment {
         generateTestSection(parent_layout, "Physical stress", QUESTIONS_PHYSICAL_STRESS, 100);
         generateTestSection(parent_layout, "Mental stress", QUESTIONS_MENTAL_STRESS, 200);
 
+        test_result_bundle.putDouble("Result", 0.25);
 
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment result_fragment = new QuizResultFragment();
+                result_fragment.setArguments(test_result_bundle);
                 FragmentTransaction ft = getFragmentManager().beginTransaction().setReorderingAllowed(true);
                 ft.replace(R.id.nav_host_fragment, result_fragment);
                 ft.commit();
