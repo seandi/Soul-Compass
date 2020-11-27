@@ -60,7 +60,8 @@ public class QuizFragment extends Fragment {
     };
 
     private static final String[][] SECTIONS = {
-            QUESTIONS_PHYSICAL_STRESS
+            QUESTIONS_PHYSICAL_STRESS,
+            QUESTIONS_MENTAL_STRESS
     };
 
     private static final String[] SECTIONS_NAME ={
