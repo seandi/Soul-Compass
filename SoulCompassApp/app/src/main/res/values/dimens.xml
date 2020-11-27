@@ -12,4 +12,6 @@
     <dimen name="question_choices_padding">16dp</dimen>
 
     <dimen name="header_corner_radius">18dp</dimen>
+
+    <dimen name="asterisk_padding">0dp</dimen>
 </resources>

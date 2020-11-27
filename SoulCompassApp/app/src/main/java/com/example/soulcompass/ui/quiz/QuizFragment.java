@@ -61,6 +61,7 @@ public class QuizFragment extends Fragment {
     private static final int QUESTION_MAX_VALUE = 3;
 
     private Map<Integer, Integer> test_answers = new HashMap<>();
+    private Map<Integer, Boolean> questions_answered = new HashMap<>();
     private MaterialButton finishButton;
     private Bundle test_result_bundle = new Bundle();
     private int test_result = 0;
@@ -85,7 +86,20 @@ public class QuizFragment extends Fragment {
 
                 // 1. Check if all questions have been answered
                 if (test_answers.size() != num_questions){
-                    Toast.makeText(getContext(), "Some answers are missing!", Toast.LENGTH_SHORT).show();
+                    Toast missing = Toast.makeText(getContext(), "Some answers are missing!", Toast.LENGTH_SHORT);
+                    missing.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 250);
+                    missing.show();
+
+                    // Add a red asterisk near all unanswered questions
+                    for (Integer id: questions_answered.keySet()) {
+                        if(!questions_answered.get(id)){
+                            Integer textId = id+CHOICE_LABELS.length;
+                            TextView question = root.findViewById(textId);
+                            question.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_asterisk, 0, 0, 0);
+                            question.setCompoundDrawablePadding(10);
+                        }
+                    }
+
                     return;
                 }
 
@@ -151,8 +165,9 @@ public class QuizFragment extends Fragment {
         for ( String question: questions) {
             id++;
             LinearLayout question_layout = createNewQuestion(parent_layout, 5);
-            createQuestionText(question_layout, question);
+            createQuestionText(question_layout, question, id+CHOICE_LABELS.length);
             createMultipleChoiceButtons(question_layout, CHOICE_LABELS.length, id, CHOICE_LABELS);
+            this.questions_answered.put(id, false);
         }
 
         // 3. Update test scale and number of questions
@@ -188,12 +203,13 @@ public class QuizFragment extends Fragment {
         return question_layout;
     }
 
-    private void createQuestionText(LinearLayout layout, String questionText){
+    private void createQuestionText(LinearLayout layout, String questionText, int id){
         int height = (int) getResources().getDimension(R.dimen.question_text_height);
         int padding = (int) getResources().getDimension(R.dimen.question_text_padding);
 
 
         TextView question = new TextView(getContext());
+        question.setId(id);
         question.setText(questionText);
         question.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -240,6 +256,11 @@ public class QuizFragment extends Fragment {
                     Log.d("Stree Test",
                             "Selected answer " + String.valueOf(checkedId - id) + " for question num " + String.valueOf(id));
                     test_answers.put(id, checkedId - id);
+                    questions_answered.put(id, true);
+
+                    TextView question = getActivity().findViewById(id+CHOICE_LABELS.length);
+                    question.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
                 }
             });
             rg.addView(buttons[i]);
