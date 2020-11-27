@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+import androidx.core.util.Consumer;
+
+
 public class ScreenUnlockSensor{
 
     private ScreenUnlockReceiver screenUnlockReceiver;
@@ -19,7 +22,7 @@ public class ScreenUnlockSensor{
        context.registerReceiver(screenUnlockReceiver, screenLockUnlockFilter);
    }
 
-   public ScreenUnlockSensor(Context context, Runnable unlock_callback){
+   public ScreenUnlockSensor(Context context, Consumer<Context> unlock_callback){
        screenUnlockReceiver = new ScreenUnlockReceiver(unlock_callback);
 
        IntentFilter screenLockUnlockFilter = new IntentFilter();
@@ -39,13 +42,13 @@ class ScreenUnlockReceiver extends BroadcastReceiver{
 
     private static boolean screen_on = true;
     private static Integer screen_unlocks = 0;
-    private Runnable unlock_callback = null;
+    private Consumer<Context> unlock_callback = null;
 
     ScreenUnlockReceiver(){
         super();
     }
 
-    ScreenUnlockReceiver(Runnable unlock_callback){
+    ScreenUnlockReceiver(Consumer<Context> unlock_callback){
         super();
         this.unlock_callback = unlock_callback;
     }
@@ -62,7 +65,7 @@ class ScreenUnlockReceiver extends BroadcastReceiver{
                 screen_on = true;
                 screen_unlocks+=1;
                 Log.d("UNLOCK SENSOR", "Screen unlocked. Total unlocks: " + screen_unlocks);
-                if(unlock_callback != null) unlock_callback.run();
+                if(unlock_callback != null) unlock_callback.accept(context);
             }
         }
 

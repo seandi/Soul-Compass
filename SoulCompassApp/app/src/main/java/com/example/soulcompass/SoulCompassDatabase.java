@@ -21,16 +21,25 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "SoulCompass";
 
+
+    // --------- TEST TABLE ------------------------------ //
     public static final String TEST_TABLE_NAME = "stress_test_results";
     public static final String TEST_KEY_ID = "id";
     public static final String TEST_KEY_RESULT = "result";
     public static final String TEST_KEY_DAY = "day";
     public static final String TEST_KEY_SCALE = "scale";
 
-
     public static final String CREATE_TEST_TABLE_SQL = "CREATE TABLE " + TEST_TABLE_NAME + " (" +
             TEST_KEY_ID + " INTEGER PRIMARY KEY, " + TEST_KEY_RESULT + " INTEGER, " + TEST_KEY_DAY + " TEXT, " +
             TEST_KEY_SCALE + " INTEGER);";
+
+    // --------- UNLOCK TABLE ------------------------------ //
+    public static final String UNLOCK_TABLE_NAME = "unlocks_number";
+    public static final String UNLOCK_KEY_ID = "id_unlock";
+    public static final String UNLOCK_KEY_DATE = "date_unlock";
+
+    public static final String CREATE_UNLOCK_TABLE_SQL = "CREATE TABLE " + UNLOCK_TABLE_NAME + " (" +
+            UNLOCK_KEY_ID + " INTEGER PRIMARY KEY, " + UNLOCK_KEY_DATE + " TEXT);";
 
 
     private SimpleDateFormat dateFormat;
@@ -39,11 +48,15 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         dateFormat= new SimpleDateFormat("yyyy.MM.dd", Locale.ENGLISH);
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+
+        //context.deleteDatabase(DATABASE_NAME);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TEST_TABLE_SQL);
+        db.execSQL(CREATE_UNLOCK_TABLE_SQL);
+        Log.d("DATABASE", "Databases created!");
     }
 
 
@@ -120,5 +133,21 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TEST_TABLE_NAME, null, null);
         database.close();
+    }
+
+
+    public static void insertUnlockEvent(Context context){
+        SoulCompassDatabase database_helper = new SoulCompassDatabase(context);
+        SQLiteDatabase database = database_helper.getWritableDatabase();
+
+        ContentValues row = new ContentValues();
+        String date = database_helper.dateFormat.format(System.currentTimeMillis());
+        row.put(UNLOCK_KEY_DATE, date);
+
+        database.insert(UNLOCK_TABLE_NAME, null, row);
+        Log.d("DATABASE", "Insert in UNLOCK_TABLE new unlock event in date: " + date);
+        database.close();
+        database_helper.close();
+
     }
 }

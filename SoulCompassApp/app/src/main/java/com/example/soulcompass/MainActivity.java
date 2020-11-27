@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
-        screenUnlockSensor = new ScreenUnlockSensor(this);
+        screenUnlockSensor = new ScreenUnlockSensor(this, SoulCompassDatabase::insertUnlockEvent);
 
 
     }
