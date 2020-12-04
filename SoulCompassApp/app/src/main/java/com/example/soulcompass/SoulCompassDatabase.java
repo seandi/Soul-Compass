@@ -12,6 +12,7 @@ import androidx.core.util.Pair;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -87,10 +88,10 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
      * Return a list of (date,result) pairs for each test in the database in the given scale
      * @param scale
      */
-    public List<Pair<String, Integer>> loadTestResults(Integer scale){
+    public Map<String, Integer> loadTestResults(Integer scale){
 
         // 1. Init
-        List<Pair<String, Integer>> test_results = new ArrayList<>();
+        HashMap<String, Integer> test_results = new HashMap<>();
         SQLiteDatabase database = this.getReadableDatabase();
 
         // 2. Query the database
@@ -115,8 +116,7 @@ public class SoulCompassDatabase extends SQLiteOpenHelper {
             String scale_str = cursor.getString(cursor.getColumnIndex(TEST_KEY_SCALE));
             Log.d("", result + " " + day + " " + scale_str);
 
-            Pair<String, Integer> test = new Pair<>(day, result);
-            test_results.add(test);
+            test_results.put(day, result);
 
             cursor.moveToNext();
         }
