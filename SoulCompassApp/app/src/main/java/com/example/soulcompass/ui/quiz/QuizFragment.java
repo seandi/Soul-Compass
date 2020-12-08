@@ -59,14 +59,44 @@ public class QuizFragment extends Fragment {
             "I do not have nay hobby"
     };
 
+    private static final String[] QUESTIONS_EMOTIONAL_STRESS = {
+            "I am unsure about my beliefs",
+            "I am frequently unhappy",
+            "I rarely compliment others",
+            "I approve rage",
+            "I react when my feelings got hurt"
+    };
+
+    private static final String[] QUESTIONS_SOCIAL_STRESS = {
+            "I do not have close friends",
+            "I rarely met someone that i want to know better",
+            "The relationship with my family does not satisfy me",
+            "If I see i crime while occuring, I think it is better to not be involved ",
+            "I dislike many people"
+    };
+
+    private static final String[] QUESTIONS_SPIRITUAL_STRESS = {
+            "My future does not look promising",
+            "I do not think my job matters",
+            "I hate solitude",
+            "I feel little obligations toward others",
+            "I doubt i can be successful"
+    };
+
     private static final String[][] SECTIONS = {
             QUESTIONS_PHYSICAL_STRESS,
-            QUESTIONS_MENTAL_STRESS
+            QUESTIONS_MENTAL_STRESS,
+            QUESTIONS_EMOTIONAL_STRESS,
+            QUESTIONS_SOCIAL_STRESS,
+            QUESTIONS_SPIRITUAL_STRESS
     };
 
     private static final String[] SECTIONS_NAME ={
             "Physical stress",
-            "Mental stress"
+            "Mental stress",
+            "Emotional stress",
+            "Social stress",
+            "Spiritual stress"
     };
 
     private static final int QUESTION_MAX_VALUE = 3;
@@ -137,6 +167,7 @@ public class QuizFragment extends Fragment {
                 // 5. Add result to database
                 SoulCompassDatabase database = new SoulCompassDatabase(getContext());
                 database.insertTestResult(test_result, test_scale);
+                database.loadTestResults(QuizFragment.getCurrentScale());
                 database.close();
             }
         });
@@ -289,7 +320,7 @@ public class QuizFragment extends Fragment {
         layout.addView(rg);
     }
 
-    private static Integer getCurrentScale(){
+    public static Integer getCurrentScale(){
         Integer result_scale = 0;
         for (String[] section_questions: SECTIONS) {
             result_scale += QuizFragment.QUESTION_MAX_VALUE*section_questions.length;
