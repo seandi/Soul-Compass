@@ -27,8 +27,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
 
-import net.kibotu.heartrateometer.HeartRateOmeter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
