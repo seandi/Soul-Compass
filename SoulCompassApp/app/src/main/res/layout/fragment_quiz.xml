@@ -37,7 +37,8 @@
                 android:text="Finish Test"
                 app:cornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:backgroundTint="@color/deep_purple"/>
 
         </LinearLayout>
 
