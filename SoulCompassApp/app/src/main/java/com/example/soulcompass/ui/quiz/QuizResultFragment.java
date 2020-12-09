@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -13,13 +14,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.soulcompass.R;
+import com.example.soulcompass.SoulCompassDatabase;
 import com.google.android.material.button.MaterialButton;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class QuizResultFragment extends Fragment {
 
     private static final int STRESS_LEVELS = 10;
+    private static final double STRESS_HIGH_THRESHOLD = 0.66;
+    private static final int SUGGEST_WALKING_MAX_STEPS = 100;
 
     private int result = 0;
     private int scale = 1;
@@ -47,6 +53,16 @@ public class QuizResultFragment extends Fragment {
         int descriptionId = getId("result_description_"+stress_level, R.string.class);
 
         result_description_text.setText(getString(descriptionId));
+
+        if(result_normalized>STRESS_HIGH_THRESHOLD) {
+            Date cDate = new Date();
+            String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+            int steps_today = SoulCompassDatabase.loadSingleRecord(getContext(), fDate);
+            if(steps_today < SUGGEST_WALKING_MAX_STEPS){
+                Toast.makeText(getContext(), "You have not walked much today, why not having a walk to relax?",Toast.LENGTH_LONG).show();
+            }
+        }
+
 
         return root;
     }
