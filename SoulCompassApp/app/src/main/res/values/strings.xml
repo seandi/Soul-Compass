@@ -145,4 +145,22 @@ risulta compromesso. Questo e\' esattamente il momento giusto per reagire
 e per affrontare con spirito diverso tutto ciò che attualmente ti mette
 a dura prova, in particolare nel campo nel campo."
     </string>
+
+    <string name="info_section">
+        Welcome to SoulCompass :) the goal of the app
+        is to help you measure and track over time
+        your levels of stress. we do so thanks to
+        your answers in the Stress Quiz and the number of
+        time you unlock your phone during the day,
+        we use this measure as a proxy for your stress level.
+        If the result of the test point to a higher
+        than normal stress level the app will suggest you a
+        breathing activity, called Pranayama, to help you
+        reduce your stress. To help you track your
+        stress levels, we show you in the report tab two charts
+        containing your measurements of stress
+        and unlocks over time.
+
+    </string>
+
 </resources>
